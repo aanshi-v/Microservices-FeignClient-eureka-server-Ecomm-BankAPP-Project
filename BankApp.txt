@@ -1,0 +1,118 @@
+
+1. Registration and Account Creation API
+localhost:8080/api/bank/register
+{
+  "name": "xyz",
+  "age": 20,
+  "gender": "Female",
+  "email": "xyz@example.com",
+  "phone": "98111111"
+}
+Response: 
+{
+    "status": "Success",
+    "message": "Registration done.",
+    "code": 10000,
+    "data": {
+        "id": 2,
+        "name": "abc",
+        "age": 20,
+        "gender": "Female",
+        "email": "abc@example.com",
+        "phone": "98111111",
+        "accountNumber": 2430403901,
+        "balance": 10000.0
+    }
+}
+
+
+
+
+
+2. Fund Transfer API
+localhost:8080/api/bank/transfer
+{
+  "fromAccount": 8813261248,
+  "toAccount": 2430403901,
+  "amount": 1500.00
+}
+
+
+{
+    "status": "Success",
+    "message": "Transfer successful",
+    "code": 10001,
+    "data": null
+}
+
+
+Response:
+{
+    "code": 500,
+    "data": null,
+    "message": "Cannot invoke \"com.design.entity.Customer.getBalance()\" because \"from\" is null",
+    "status": "Error"
+}
+
+
+
+
+
+
+
+
+3. Statement API
+localhost:8080/api/bank/statement
+{
+  "account": 8813261248,
+  "month": 6,
+  "year": 2025
+}
+
+
+
+{
+    "status": "Success",
+    "message": "Statement fetched",
+    "code": 10002,
+    "data": [
+        {
+            "id": 1,
+            "fromAccount": 8813261248,
+            "toAccount": 2430403901,
+            "amount": 1500.0,
+            "type": "TRANSFER",
+            "timestamp": "2025-06-26T16:25:33.253062"
+        }
+    ]
+}
+
+
+
+
+{
+    "status": "Success",
+    "message": "Statement fetched",
+    "code": 10002,
+    "data": []
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
