@@ -1,6 +1,24 @@
+Bank App
+	1) Registration and account creation
+			name, age, gender, ......
+age > 18
+			create account
+					generate 10 digit number and give 10k as opening balance
+	2) Fundtransfer
+			from a/c     
+			to a/c       
+			amount       
+			transaction histry
+	3) Statement
+			a/c, month, year
+debits and credits		
+
+_______________________________________________________________________________________
+
+
 
 1. Registration and Account Creation API
-localhost:8080/api/bank/register
+Post:  localhost:8080/api/bank/register
 {
   "name": "xyz",
   "age": 20,
@@ -37,27 +55,13 @@ localhost:8080/api/bank/transfer
   "amount": 1500.00
 }
 
-
+Response:
 {
     "status": "Success",
     "message": "Transfer successful",
     "code": 10001,
     "data": null
 }
-
-
-Response:
-{
-    "code": 500,
-    "data": null,
-    "message": "Cannot invoke \"com.design.entity.Customer.getBalance()\" because \"from\" is null",
-    "status": "Error"
-}
-
-
-
-
-
 
 
 
@@ -70,7 +74,7 @@ localhost:8080/api/bank/statement
 }
 
 
-
+Response:
 {
     "status": "Success",
     "message": "Statement fetched",
@@ -86,32 +90,6 @@ localhost:8080/api/bank/statement
         }
     ]
 }
-
-
-
-
-{
-    "status": "Success",
-    "message": "Statement fetched",
-    "code": 10002,
-    "data": []
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

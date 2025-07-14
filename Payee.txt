@@ -1,0 +1,78 @@
+1. Add Payee
+Post:  localhost:8080/api/payee/add
+{
+  "customerAccountNumber": 1234567890,
+  "payeeName": "Aanshi",
+  "payeeAccountNumber": "9876543217",
+  "bankName": "HDFC Bank"
+}
+
+
+2. Update Payee
+Put:   localhost:8080/api/payee/update
+{
+  "id": 1,
+  "customerAccountNumber": 1234567890,
+  "payeeName": "John D",
+  "payeeAccountNumber": "9876543210",
+  "bankName": "ICICI Bank"
+}
+
+
+3:   Partial Update Payee
+localhost:8080/api/payee/patch/1
+Request:
+{
+  "bankName": "SBI Bank"
+}
+Response:
+{
+    "status": "Success",
+    "message": "Payee partially updated",
+    "code": 20004,
+    "data": {
+        "id": 1,
+        "customerAccountNumber": 1234567890,
+        "payeeName": "John",
+        "payeeAccountNumber": "9876543210",
+        "bankName": "SBI Bank"
+    }
+}
+
+
+4. Delete Payee
+Delete:   localhost:8080/api/payee/delete/6
+
+Response:
+{
+    "status": "Success",
+    "message": "Payee deleted",
+    "code": 20002,
+    "data": null
+}
+
+
+5. Get All Payees by Customer Account Number
+Get:    localhost:8080/api/payee/customer/1234567890
+Response:
+{
+    "status": "Success",
+    "message": "Payees fetched",
+    "code": 20003,
+    "data": [
+        {
+            "id": 1,
+            "customerAccountNumber": 1234567890,
+            "payeeName": "John",
+            "payeeAccountNumber": "9876543210",
+            "bankName": "ICICI Bank"
+        },
+        {
+            "id": 3,
+            "customerAccountNumber": 1234567890,
+            "payeeName": "Aanshi",
+            "payeeAccountNumber": "9876543217",
+            "bankName": "HDFC Bank"
+        }
+    ]
+}

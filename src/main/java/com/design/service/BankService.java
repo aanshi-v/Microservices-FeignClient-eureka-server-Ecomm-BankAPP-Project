@@ -1,11 +1,13 @@
 package com.design.service;
 
 import java.time.LocalDateTime;
+import java.util.EnumMap;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.design.dto.FundTransferRequest;
 import com.design.dto.RegistrationRequest;
@@ -36,9 +38,18 @@ public class BankService {
 	    }
 
 	    
-	    public String transfer(FundTransferRequest request) {
+//	    public String transfer(FundTransferRequest request) {
+	    @Transactional 
+	    public Transaction transfer(FundTransferRequest request) {
 	        Customer from = customerRepo.findByAccountNumber(request.getFromAccount());
 	        Customer to = customerRepo.findByAccountNumber(request.getToAccount());
+	        
+	        if (from == null) {
+	            throw new RuntimeException("Account number " + request.getFromAccount() + " does not exist: ");
+	        }
+	        if (to == null) {
+	            throw new RuntimeException("Account number " + request.getToAccount() + " does not exist: ");
+	        }
 
 	        if (from.getBalance() < request.getAmount()) {
 	            throw new RuntimeException("Insufficient balance");
@@ -46,7 +57,7 @@ public class BankService {
 
 	        from.setBalance(from.getBalance() - request.getAmount());
 	        to.setBalance(to.getBalance() + request.getAmount());
-
+ 
 	        customerRepo.save(from);
 	        customerRepo.save(to);
 
@@ -58,21 +69,27 @@ public class BankService {
 	        t.setTimestamp(LocalDateTime.now());
 	        transactionRepo.save(t);
 
-	        return "Transfer successful";
+//	        return "Transfer successful";
+	        return  transactionRepo.save(t);
 	    }
 
 	    
+//	    public List<Transaction> getStatement(StatementRequest request) {
+//	        return transactionRepo.findByFromAccountOrToAccount(request.getAccount(), request.getAccount());
+//	    }
+
 	    public List<Transaction> getStatement(StatementRequest request) {
+	        boolean exists = customerRepo.existsByAccountNumber(request.getAccount());
+	        if (!exists) {
+	            throw new RuntimeException("Account number does not exist: " + request.getAccount());
+	        }
 	        return transactionRepo.findByFromAccountOrToAccount(request.getAccount(), request.getAccount());
 	    }
-
 	    
 	    
 	    
 	    
-	    
-	    
-	    
+	    	    
 	    public Customer validateCustomer(Long customerId, Long accountNumber) {
 	        Customer customer = customerRepo.findByAccountNumber(accountNumber);
 

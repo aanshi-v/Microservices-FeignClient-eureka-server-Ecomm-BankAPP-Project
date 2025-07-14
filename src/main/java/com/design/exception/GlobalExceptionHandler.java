@@ -23,17 +23,7 @@ public class GlobalExceptionHandler {
 	        return ResponseEntity.badRequest().body(res);
 	    }
 
-//	    @ExceptionHandler(RuntimeException.class)
-//	    public ResponseEntity<?> handleRuntime(RuntimeException ex) {
-//	        Map<String, Object> res = new HashMap<>();
-//	        res.put("status", "Error");
-//	        res.put("message", ex.getMessage());
-//	        res.put("code", 500);
-//	        res.put("data", null);
-//	        return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
-//	    }
-	    
-	    
+    
 	    @ExceptionHandler(RuntimeException.class)
 	    public ResponseEntity<Map<String, Object>> handleRuntime(RuntimeException ex) {
 	        Map<String, Object> error = new LinkedHashMap<>();

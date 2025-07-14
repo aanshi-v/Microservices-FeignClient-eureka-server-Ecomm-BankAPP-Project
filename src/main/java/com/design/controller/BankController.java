@@ -38,8 +38,9 @@ public class BankController {
 
     @PostMapping("/transfer")
     public ResponseEntity<?> transfer(@Valid @RequestBody FundTransferRequest request) {
-        String msg = service.transfer(request);
-        return ResponseEntity.ok(response("Success", msg, 10001, null));
+//        String msg = service.transfer(request);
+    	 Transaction data = service.transfer(request); 
+        return ResponseEntity.ok(response("Success", "Amount transferred", 10001, data));
     }
 
     @PostMapping("/statement")
@@ -59,10 +60,7 @@ public class BankController {
     
     
     
-    
-    
-    
-    
+      
     @GetMapping("/validate")
     public ResponseEntity<?> validateCustomer(
             @RequestParam Long customerId,

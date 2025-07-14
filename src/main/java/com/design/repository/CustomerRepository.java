@@ -9,4 +9,6 @@ import com.design.entity.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	Customer findByAccountNumber(Long acc);
+
+	boolean existsByAccountNumber(Long account); 
 }
