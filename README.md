@@ -19,7 +19,7 @@ For example, I can first use the save API to add a product like “iPhone 15”,
 
 ---
 
-## @FeignClient
+# @FeignClient
 
 The /api/orders/buy API allows a customer to purchase one or more products by providing:
 •	Customer ID
