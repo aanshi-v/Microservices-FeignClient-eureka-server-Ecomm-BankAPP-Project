@@ -38,7 +38,7 @@ It then:
 
 🎯 Project: E-Commerce REST API
 🔧 Tech Stack
-Java 17 (or 21)
+Java 21
 
 Spring Boot
 
